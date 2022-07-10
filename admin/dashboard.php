@@ -100,6 +100,11 @@ if(empty($_SESSION['id_user'])){
             responsive: true
         });
     });
+    $(function() {
+        $('#pekerjaan').DataTable({
+            responsive: true
+        });
+    });
     </script>
 </body>
 

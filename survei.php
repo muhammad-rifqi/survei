@@ -80,6 +80,7 @@ include "admin/config.php";
         var kota = document.getElementById("kota").value;
         var kecamatan = document.getElementById("kecamatan").value;
         var umur = document.getElementById("umur").value;
+        var pekerjaan = document.getElementById("pekerjaan").value;
         var alamat = document.getElementById("alamat").value;
         var files = document.getElementById("foto").files[0];
         var aksi = 'user';
@@ -96,7 +97,7 @@ include "admin/config.php";
                 text: "Failed",
                 icon: "error",
             }).then(function() {
-                window.location = "survei.php";
+                window.location = "survei.php?wilayah="+<?php echo $_GET['wilayah']; ?>;
             });
 
         } else {
@@ -111,6 +112,7 @@ include "admin/config.php";
             formdata.append("kota", kota);
             formdata.append("kecamatan", kecamatan);
             formdata.append("umur", umur);
+            formdata.append("pekerjaan", pekerjaan);
             formdata.append("alamat", alamat);
             formdata.append("foto", files);
             formdata.append("aksi", aksi);
@@ -132,7 +134,7 @@ include "admin/config.php";
                         }).then(function() {
                             localStorage.removeItem("latitude");
                             localStorage.removeItem("longitude");
-                            window.location = "survei.php?id=" + return_data.data.id + "&token=" +
+                            window.location = "survei.php?wilayah="+<?php echo $_GET['wilayah']; ?>+"&id=" + return_data.data.id + "&token=" +
                                 return_data.data.token;
 
                         });
@@ -142,7 +144,7 @@ include "admin/config.php";
                             text: return_data.success,
                             icon: "error",
                         }).then(function() {
-                            window.location = "survei.php";
+                            window.location = "survei.php?wilayah="+<?php echo $_GET['wilayah']; ?>;
                         });
                     }
                 }
@@ -255,6 +257,10 @@ include "admin/config.php";
                 <input type="number" id="umur" class="form-control" class="input" required>
             </div>
             <div class="form__row">
+                <div class="label">Pekerjaan <b>)* Wajib Di Isi</b> </div>
+                <input type="text" id="pekerjaan" class="form-control" class="input" required>
+            </div>
+            <div class="form__row">
                 <div class="label">Tambahkan Keterangan Alamat <b>)* Wajib Di Isi</b> </div>
                 <input type="text" id="alamat" class="form-control" placeholder="Masukan Alamat" class="input" required>
             </div>
@@ -279,14 +285,16 @@ include "admin/config.php";
             <h1 class="title">Form Isian</h1>
         </div>
         <form method="POST" action="aksi.php?act=input_jawaban">
-            <input type="hidden" name="id_user" value="<?php echo $_GET['id'];?>">
+            <input type="hidden" name="id_user" value="<?php echo $_SESSION['id_user'];?>">
+            <input type="hidden" name="id_pemilih" value="<?php echo $_GET['id']; ?>">
             <?php
         $no=1;
-        $q = mysqli_query($koneksi,"select * from pertanyaan");
+        $q = mysqli_query($koneksi,"select * from pertanyaan where provinsi = '".$_GET['wilayah']."'");
         while($d = mysqli_fetch_array($q)){
         ?>
             <input type="hidden" name="id_pertanyaan<?php echo $no;?>" value="<?php echo $d['id']; ?>">
             <input type="hidden" name="benar<?php echo $no;?>" value="<?php echo $d['jawaban']; ?>">
+          
             <div class="form__row">
                 <div class="label"><?php echo $d['soal']; ?> ?? <b>)* Wajib di-Isi</b> </div>
                 <?php

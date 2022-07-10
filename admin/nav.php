@@ -55,6 +55,9 @@
                          <li>
                              <a href="?menu=umur"> Pemilih Berdasarkan Umur </a>
                          </li>
+                         <li>
+                             <a href="?menu=pekerjaan"> Pemilih Berdasarkan Pekerjaan </a>
+                         </li>
                      </ul>
                  </li>
                  <li>

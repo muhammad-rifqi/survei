@@ -6,9 +6,9 @@ $nama_file = $_FILES['photo']['name'];
 $lokasi_file = $_FILES['photo']['tmp_name'];
 if(!empty($lokasi_file)){
 move_uploaded_file($lokasi_file,"assets/upload/pertanyaan/$nama_file");
-mysqli_query($koneksi,"insert into pertanyaan(soal,a,b,c,d,jawaban,foto)values('".$_POST['soal']."','".$_POST['a']."','".$_POST['b']."','".$_POST['c']."','".$_POST['d']."','".$_POST['jawaban']."','".$nama_file."')");
+mysqli_query($koneksi,"insert into pertanyaan(soal,a,b,c,d,jawaban,foto,provinsi)values('".$_POST['soal']."','".$_POST['a']."','".$_POST['b']."','".$_POST['c']."','".$_POST['d']."','".$_POST['jawaban']."','".$nama_file."','".$_POST['provinsi']."')");
 }else{
-mysqli_query($koneksi,"insert into pertanyaan(soal,a,b,c,d,jawaban)values('".$_POST['soal']."','".$_POST['a']."','".$_POST['b']."','".$_POST['c']."','".$_POST['d']."','".$_POST['jawaban']."')");    
+mysqli_query($koneksi,"insert into pertanyaan(soal,a,b,c,d,jawaban,provinsi)values('".$_POST['soal']."','".$_POST['a']."','".$_POST['b']."','".$_POST['c']."','".$_POST['d']."','".$_POST['jawaban']."','".$_POST['provinsi']."')");    
 }
 header('location:dashboard.php?menu=pertanyaan');
 }
@@ -24,9 +24,9 @@ $nama_file = $_FILES['photo']['name'];
 $lokasi_file = $_FILES['photo']['tmp_name'];
 if(!empty($lokasi_file)){
 move_uploaded_file($lokasi_file,"assets/upload/pertanyaan/$nama_file");
-mysqli_query($koneksi,"update pertanyaan set soal='".$_POST['soal']."',a='".$_POST['a']."',b='".$_POST['b']."',c='".$_POST['c']."',d='".$_POST['d']."',jawaban='".$_POST['jawaban']."',foto='".$nama_file."' where id = '".$_POST['id']."'");
+mysqli_query($koneksi,"update pertanyaan set soal='".$_POST['soal']."',a='".$_POST['a']."',b='".$_POST['b']."',c='".$_POST['c']."',d='".$_POST['d']."',jawaban='".$_POST['jawaban']."',foto='".$nama_file."',provinsi='".$_POST['provinsi']."' where id = '".$_POST['id']."'");
 }else{
-mysqli_query($koneksi,"update pertanyaan set soal='".$_POST['soal']."',a='".$_POST['a']."',b='".$_POST['b']."',c='".$_POST['c']."',d='".$_POST['d']."',jawaban='".$_POST['jawaban']."' where id = '".$_POST['id']."'");
+mysqli_query($koneksi,"update pertanyaan set soal='".$_POST['soal']."',a='".$_POST['a']."',b='".$_POST['b']."',c='".$_POST['c']."',d='".$_POST['d']."',jawaban='".$_POST['jawaban']."',provinsi='".$_POST['provinsi']."' where id = '".$_POST['id']."'");
 }   
 header('location:dashboard.php?menu=pertanyaan');
 }
@@ -39,7 +39,7 @@ header('location:dashboard.php?menu=jawaban');
 
 if($_GET['act'] == 'hapus_pemilih'){
 mysqli_query($koneksi,"delete from pemilih where id = '$_GET[id]'");
-header('location:dashboard.php?menu=pengguna');
+header('location:dashboard.php?menu=pemilih');
 }
 
 if($_GET['act'] == 'tambah_suku'){

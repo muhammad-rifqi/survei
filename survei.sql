@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2022 at 05:26 AM
+-- Generation Time: Jul 10, 2022 at 06:37 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.3.28
 
@@ -52,6 +52,7 @@ INSERT INTO `agama` (`id`, `nama_agama`) VALUES
 CREATE TABLE `jawaban` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
+  `id_pemilih` int(11) NOT NULL,
   `id_pertanyaan` int(11) NOT NULL,
   `jawaban` varchar(100) NOT NULL,
   `point` int(11) NOT NULL,
@@ -62,9 +63,10 @@ CREATE TABLE `jawaban` (
 -- Dumping data for table `jawaban`
 --
 
-INSERT INTO `jawaban` (`id`, `id_user`, `id_pertanyaan`, `jawaban`, `point`, `benar`) VALUES
-(7, 3, 1, 'D', 0, 'B'),
-(8, 3, 2, 'B', 0, 'A');
+INSERT INTO `jawaban` (`id`, `id_user`, `id_pemilih`, `id_pertanyaan`, `jawaban`, `point`, `benar`) VALUES
+(11, 3, 6, 2, 'A', 0, 'A'),
+(13, 3, 8, 4, 'A', 0, 'A'),
+(14, 3, 9, 2, 'A', 0, 'A');
 
 -- --------------------------------------------------------
 
@@ -124,6 +126,7 @@ CREATE TABLE `pemilih` (
   `kota` int(11) NOT NULL,
   `kecamatan` int(11) NOT NULL,
   `umur` int(11) NOT NULL,
+  `pekerjaan` varchar(255) NOT NULL,
   `alamat` text NOT NULL,
   `foto` varchar(255) NOT NULL,
   `token` varchar(255) NOT NULL,
@@ -136,8 +139,10 @@ CREATE TABLE `pemilih` (
 -- Dumping data for table `pemilih`
 --
 
-INSERT INTO `pemilih` (`id`, `no_ktp`, `nama`, `email`, `suku`, `agama`, `provinsi`, `kota`, `kecamatan`, `umur`, `alamat`, `foto`, `token`, `latitude`, `longitude`, `id_user`) VALUES
-(3, '10890983495893', 'muhammad rifki', 'muhammad45rifki@gmail.com', 1, 1, 8, 3, 2, 90, 'ciputat, tangerang selatan', '1631516283870.png', '5l6dv11hu086ah3bbumrne1e69', '-6.5971469', '106.8060388', 3);
+INSERT INTO `pemilih` (`id`, `no_ktp`, `nama`, `email`, `suku`, `agama`, `provinsi`, `kota`, `kecamatan`, `umur`, `pekerjaan`, `alamat`, `foto`, `token`, `latitude`, `longitude`, `id_user`) VALUES
+(6, '10890983495893', 'muhammad rifki', 'muhammad45rifki@gmail.com', 2, 1, 8, 3, 2, 45, 'petani', 'ciputat, tangerang selatan', 'rifki.JPG', 'lehjatmq7flmal56aragsspq7u', '-6.5971469', '106.8060388', 3),
+(8, '10890983495893', 'Muhammad Rifqi', 'php45mysql@gmail.com', 2, 1, 8, 3, 2, 50, 'karyawanswasta', 'ciputat, tangerang selatan', 'g20pedia-banner.jpg', '4svr50261nm059l3dtoouu62en', '-6.5971469', '106.8060388', 3),
+(9, '37879863458683', 'Rizky Darmawan', 'darmawanrizsky@gmail.com', 1, 1, 8, 3, 2, 34, 'karyawanswasta', 'Pamulang', 'image9.jpg', '0d5obp3lor91t92n8gokt0kb9d', '-6.1169309', '106.1538519', 3);
 
 -- --------------------------------------------------------
 
@@ -153,17 +158,18 @@ CREATE TABLE `pertanyaan` (
   `c` varchar(100) NOT NULL,
   `d` varchar(100) NOT NULL,
   `jawaban` varchar(100) NOT NULL,
-  `foto` varchar(255) NOT NULL
+  `foto` varchar(255) NOT NULL,
+  `provinsi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pertanyaan`
 --
 
-INSERT INTO `pertanyaan` (`id`, `soal`, `a`, `b`, `c`, `d`, `jawaban`, `foto`) VALUES
-(1, 'Siapakah Presiden indonesia tahun 2022', 'SBY', 'Jokowi', 'Habibi', 'Megawati', 'B', 'images.jpeg'),
-(2, 'Siapakah Penemu Gravitasi ', 'Newton', 'Harry Potter', 'Spider', 'Superman', 'A', 'download.jpeg'),
-(4, 'Dimanakah letak negara indonesia ??', 'Benua Asia', 'Benua Afrika', '', '', 'A', 'Login.jpg');
+INSERT INTO `pertanyaan` (`id`, `soal`, `a`, `b`, `c`, `d`, `jawaban`, `foto`, `provinsi`) VALUES
+(1, 'Siapakah Presiden indonesia tahun 2022', 'SBY', 'Jokowi', 'Habibi', 'Megawati', 'B', 'images.jpeg', 5),
+(2, 'Siapakah Penemu Gravitasi ', 'Newton', 'Harry Potter', 'Spider', 'Superman', 'A', 'download.jpeg', 8),
+(4, 'Dimanakah letak negara indonesia ??', 'Benua Asia', 'Benua Afrika', '', '', 'A', 'Login.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -303,7 +309,7 @@ ALTER TABLE `agama`
 -- AUTO_INCREMENT for table `jawaban`
 --
 ALTER TABLE `jawaban`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `kecamatan`
@@ -321,7 +327,7 @@ ALTER TABLE `kota`
 -- AUTO_INCREMENT for table `pemilih`
 --
 ALTER TABLE `pemilih`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `pertanyaan`

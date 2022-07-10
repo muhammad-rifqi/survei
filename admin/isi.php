@@ -28,33 +28,33 @@ if($_GET['menu'] == 'suku'){
                 Data Pemilih Berdasarkan Suku
             </div>
             <div class="table-responsive">
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="suku">
-                                    <thead>
-                                        <tr>
-                                            
-                                            <th>Nama Suku</th>
-                                            <th>Pemilih Suku</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
+                <div class="panel-body">
+                    <div class="dataTable_wrapper">
+                        <table class="table table-striped table-bordered table-hover" id="suku">
+                            <thead>
+                                <tr>
+
+                                    <th>Nama Suku</th>
+                                    <th>Pemilih Suku</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
                             while($data = mysqli_fetch_array($sql)){                            
                             ?>
-                                        <tr class="odd gradeX">
-                                            <td><?php echo $data['nama_suku']; ?></td>
-                                            <td><?php echo $data['pemilih_suku']; ?></td>
-                                           
-                                        </tr>
-                                        <?php
+                                <tr class="odd gradeX">
+                                    <td><?php echo $data['nama_suku']; ?></td>
+                                    <td><?php echo $data['pemilih_suku']; ?></td>
+
+                                </tr>
+                                <?php
                                 }
                             ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -77,38 +77,88 @@ if($_GET['menu'] == 'suku'){
                 Data Pemilih Berdasarkan Agama
             </div>
             <div class="table-responsive">
-                        <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="agama">
-                                    <thead>
-                                        <tr>
-                                            
-                                            <th>Nama Agama</th>
-                                            <th>Pemilih Agama</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
+                <div class="panel-body">
+                    <div class="dataTable_wrapper">
+                        <table class="table table-striped table-bordered table-hover" id="agama">
+                            <thead>
+                                <tr>
+
+                                    <th>Nama Agama</th>
+                                    <th>Pemilih Agama</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
                             while($data = mysqli_fetch_array($sql)){                            
                             ?>
-                                        <tr class="odd gradeX">
-                                            <td><?php echo $data['nama_agama']; ?></td>
-                                            <td><?php echo $data['pemilih_agama']; ?></td>
-                                           
-                                        </tr>
-                                        <?php
+                                <tr class="odd gradeX">
+                                    <td><?php echo $data['nama_agama']; ?></td>
+                                    <td><?php echo $data['pemilih_agama']; ?></td>
+
+                                </tr>
+                                <?php
                                 }
                             ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+
+<?php 
+}if($_GET['menu'] == 'pekerjaan'){
+    $sql = mysqli_query($koneksi,"select *,count(pemilih.pekerjaan) as pemilih_pekerjaan from pemilih group by pekerjaan");
+?>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Kalkulasi Berdasarkan Pekerjaan</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Data Pemilih Berdasarkan Agama
+            </div>
+            <div class="table-responsive">
+                <div class="panel-body">
+                    <div class="dataTable_wrapper">
+                        <table class="table table-striped table-bordered table-hover" id="pekerjaan">
+                            <thead>
+                                <tr>
+
+                                    <th>Nama Pekerjaan</th>
+                                    <th>Pemilih Pekerjaan</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                            while($data = mysqli_fetch_array($sql)){                            
+                            ?>
+                                <tr class="odd gradeX">
+                                    <td><?php echo $data['pekerjaan']; ?></td>
+                                    <td><?php echo $data['pemilih_pekerjaan']; ?></td>
+
+                                </tr>
+                                <?php
+                                }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -159,7 +209,7 @@ if($_SESSION['status'] == 'admin'){
                                     <td class="center">
                                         <a href="aksi_admin.php?act=hapus_pemilih&id=<?php echo $data['id'];?>"
                                             class="btn btn-danger"><i class="fa fa-trash fa-fw"></i></a>
-                                            <a href="?menu=detail_pemilih&id=<?php echo $data['id'];?>"
+                                        <a href="?menu=detail_pemilih&id=<?php echo $data['id'];?>"
                                             class="btn btn-success"><i class="fa fa-eye fa-fw"></i></a>
                                     </td>
                                 </tr>
@@ -181,14 +231,15 @@ if($_SESSION['status'] == 'admin'){
 $data = mysqli_fetch_array(mysqli_query($koneksi,"select * from pemilih where id = '".$_GET['id']."'"));
 ?>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" type="text/css">
-    <style>
-    .map {
-        height: 300px;
-        width: 400px;
-    }
-    </style>
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css"
+    type="text/css">
+<style>
+.map {
+    height: 300px;
+    width: 400px;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
 
 
 <div class="row">
@@ -204,80 +255,83 @@ $data = mysqli_fetch_array(mysqli_query($koneksi,"select * from pemilih where id
                 Detail Pemilih
             </div>
             <div class="panel-body">
-                    <div class="form-group">
-                        <label for="soal">Nama</label>
-                        <input type="text" class="form-control"  value="<?php echo $data['nama'];?>" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="a">Email</label>
-                        <input type="text" class="form-control" value="<?php echo $data['email'];?>" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="a">Suku</label>
-                        <input type="text" class="form-control" value="<?php echo convert_suku($data['suku']);?>" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="a">Agama</label>
-                        <input type="text" class="form-control" value="<?php echo convert_agama($data['agama']);?>" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="a">Provinsi</label>
-                        <input type="text" class="form-control"  value="<?php echo convert_provinsi($data['provinsi']);?>" disabled>
-                    </div>
+                <div class="form-group">
+                    <label for="soal">Nama</label>
+                    <input type="text" class="form-control" value="<?php echo $data['nama'];?>" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="a">Email</label>
+                    <input type="text" class="form-control" value="<?php echo $data['email'];?>" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="a">Suku</label>
+                    <input type="text" class="form-control" value="<?php echo convert_suku($data['suku']);?>" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="a">Agama</label>
+                    <input type="text" class="form-control" value="<?php echo convert_agama($data['agama']);?>"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="a">Provinsi</label>
+                    <input type="text" class="form-control" value="<?php echo convert_provinsi($data['provinsi']);?>"
+                        disabled>
+                </div>
 
-                    <div class="form-group">
-                        <label for="a">Kota</label>
-                        <input type="text" class="form-control"  value="<?php echo convert_kota($data['kota']);?>" disabled>
-                    </div>
+                <div class="form-group">
+                    <label for="a">Kota</label>
+                    <input type="text" class="form-control" value="<?php echo convert_kota($data['kota']);?>" disabled>
+                </div>
 
-                    <div class="form-group">
-                        <label for="a">Kecamatan</label>
-                        <input type="text" class="form-control"  value="<?php echo convert_kecamatan($data['kecamatan']);?>" disabled>
-                    </div>
+                <div class="form-group">
+                    <label for="a">Kecamatan</label>
+                    <input type="text" class="form-control" value="<?php echo convert_kecamatan($data['kecamatan']);?>"
+                        disabled>
+                </div>
 
-                    <div class="form-group">
-                        <label for="a">Umur</label>
-                        <input type="text" class="form-control"  value="<?php echo $data['umur'];?>" disabled>
-                    </div>
+                <div class="form-group">
+                    <label for="a">Umur</label>
+                    <input type="text" class="form-control" value="<?php echo $data['umur'];?>" disabled>
+                </div>
 
-                    <div class="form-group">
-                        <label for="a">Alamat</label>
-                        <input type="text" class="form-control"  value="<?php echo $data['alamat'];?>" disabled>
-                    </div>
-                 
-                    <div class="form-group">
-                        <label for="a">Photo</label><br><br>
-                        <img src="assets/upload/<?php echo $data['foto']?>" width="100">
-                    </div>
+                <div class="form-group">
+                    <label for="a">Alamat</label>
+                    <input type="text" class="form-control" value="<?php echo $data['alamat'];?>" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="a">Photo</label><br><br>
+                    <img src="assets/upload/<?php echo $data['foto']?>" width="100">
+                </div>
 
 
-                    <div class="form-group">
-                        <label for="a">Lokasi Penginputan Data</label><br><br>
-                        <div id="map" class="map"></div>
-                    </div>
-                   
-                  
+                <div class="form-group">
+                    <label for="a">Lokasi Penginputan Data</label><br><br>
+                    <div id="map" class="map"></div>
+                </div>
+
+
             </div>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
-    var map = new ol.Map({
-        target: 'map',
-        layers: [
+var map = new ol.Map({
+    target: 'map',
+    layers: [
         new ol.layer.Tile({
             source: new ol.source.OSM()
         })
-        ],
-        view: new ol.View({
+    ],
+    view: new ol.View({
         center: ol.proj.fromLonLat([<?= $data['longitude'];?>, <?= $data['latitude'];?>]),
         zoom: 15,
         maxZoom: 18,
         constrainOnlyCenter: true,
-        })
-    });
-    </script>
+    })
+});
+</script>
 
 
 
@@ -407,7 +461,8 @@ $sql = mysqli_query($koneksi,"select * from pertanyaan");
                                     <td class="center"><?php echo $data['c']; ?></td>
                                     <td class="center"><?php echo $data['d']; ?></td>
                                     <td class="center"><?php echo $data['jawaban']; ?></td>
-                                    <td class="center"><img src="assets/upload/pertanyaan/<?php echo $data['foto']; ?>" width="100"></td>
+                                    <td class="center"><img src="assets/upload/pertanyaan/<?php echo $data['foto']; ?>"
+                                            width="100"></td>
                                     <td class="center">
                                         <a href="?menu=edit_pertanyaan&id=<?php echo $data['id'];?>"
                                             class="btn btn-warning"><i class="fa fa-pencil fa-fw"></i></a>
@@ -450,6 +505,18 @@ $sql = mysqli_query($koneksi,"select * from pertanyaan");
                 <form method="POST" action="aksi_admin.php?act=tambah_pertanyaan" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="soal">Soal</label>
+                        <select class="form-control" id="provinsi" name="provinsi">
+                            <option value="--"> Pilih Provinsi </option>
+                            <?php 
+                            $q = mysqli_query($koneksi,"select * from provinsi");
+                            while($d = mysqli_fetch_array($q)){
+                                echo "<option value='$d[id]'>$d[nama_provinsi]</option>";
+                            }
+                        ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="soal">Soal</label>
                         <input type="text" class="form-control" id="soal" name="soal" placeholder="Masukan Soal">
                     </div>
                     <div class="form-group">
@@ -475,8 +542,8 @@ $sql = mysqli_query($koneksi,"select * from pertanyaan");
                     </div>
                     <div class="form-group">
                         <label for="a">Photo</label>
-                        <input type="file" class="form-control" id="foto" name="photo"
-                            placeholder="Masukan Photo" accept="image/*">
+                        <input type="file" class="form-control" id="foto" name="photo" placeholder="Masukan Photo"
+                            accept="image/*">
                     </div>
 
                     <input type="submit" value="Simpan" class="btn btn-primary">
@@ -507,26 +574,49 @@ $data = mysqli_fetch_array(mysqli_query($koneksi,"select * from pertanyaan where
             </div>
             <div class="panel-body">
                 <form method="POST" action="aksi_admin.php?act=edit_pertanyaan" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?php echo $data['id'];?>">
+                    <input type="hidden" name="id" value="<?php echo $data['id'];?>">
+
                     <div class="form-group">
                         <label for="soal">Soal</label>
-                        <input type="text" class="form-control" id="soal" name="soal" value="<?php echo $data['soal'];?>" placeholder="Masukan Soal">
+                        <select class="form-control" id="provinsi" name="provinsi">
+                            <option value="--"> Pilih Provinsi </option>
+                            <?php 
+                            $q = mysqli_query($koneksi,"select * from provinsi");
+                            while($d = mysqli_fetch_array($q)){
+                                if(d['id'] == $data['provinsi']){
+                                    echo "<option value='$d[id]' selected>$d[nama_provinsi]</option>";
+                                }else{
+                                    echo "<option value='$d[id]'>$d[nama_provinsi]</option>";
+                                }
+                            }
+                        ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="soal">Soal</label>
+                        <input type="text" class="form-control" id="soal" name="soal"
+                            value="<?php echo $data['soal'];?>" placeholder="Masukan Soal">
                     </div>
                     <div class="form-group">
                         <label for="a">A</label>
-                        <input type="text" class="form-control" id="a" name="a" value="<?php echo $data['a'];?>" placeholder="jawaban a">
+                        <input type="text" class="form-control" id="a" name="a" value="<?php echo $data['a'];?>"
+                            placeholder="jawaban a">
                     </div>
                     <div class="form-group">
                         <label for="a">B</label>
-                        <input type="text" class="form-control" id="b" name="b" value="<?php echo $data['b'];?>" placeholder="jawaban b">
+                        <input type="text" class="form-control" id="b" name="b" value="<?php echo $data['b'];?>"
+                            placeholder="jawaban b">
                     </div>
                     <div class="form-group">
                         <label for="a">C</label>
-                        <input type="text" class="form-control" id="c" name="c" value="<?php echo $data['c'];?>"  placeholder="jawaban c">
+                        <input type="text" class="form-control" id="c" name="c" value="<?php echo $data['c'];?>"
+                            placeholder="jawaban c">
                     </div>
                     <div class="form-group">
                         <label for="a">D</label>
-                        <input type="text" class="form-control" id="d" name="d"  value="<?php echo $data['d'];?>" placeholder="jawaban d">
+                        <input type="text" class="form-control" id="d" name="d" value="<?php echo $data['d'];?>"
+                            placeholder="jawaban d">
                     </div>
                     <div class="form-group">
                         <label for="a">Jawaban</label>
@@ -539,8 +629,8 @@ $data = mysqli_fetch_array(mysqli_query($koneksi,"select * from pertanyaan where
                     </div>
                     <div class="form-group">
                         <label for="a">Photo</label>
-                        <input type="file" class="form-control" id="foto" name="photo"
-                            placeholder="Masukan Photo" accept="image/*">
+                        <input type="file" class="form-control" id="foto" name="photo" placeholder="Masukan Photo"
+                            accept="image/*">
                     </div>
 
                     <input type="submit" value="Simpan" class="btn btn-primary">
@@ -1433,17 +1523,28 @@ $data = mysqli_fetch_array(mysqli_query($koneksi,"select * from user where id = 
 </div>
 
 <div class="row">
-    <div class="col-lg-12 text-center">
+    <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
                 Mulai Survei
             </div>
             <div class="panel-body">
                 <div class="card" style="width: 100%;">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Penyelenggaraan Survei</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Survei</h6>
-                        <a href="../survei.php" target="_blank" class="btn btn-primary">Mulai Survei</a>
+                    <div class="card-body">
+                        <form method="GET" action="../survei.php" target="__blank">
+                            <select name="wilayah" class="form-control">
+                                <option value="Pilih Wilayah">Pilih Wilayah</option>
+                                <?php 
+                                    $q = mysqli_query($koneksi,"select * from provinsi");
+                                    while($d = mysqli_fetch_array($q)){
+                                            echo "<option value='$d[id]'>$d[nama_provinsi]</option>";
+                                    }
+                                ?>
+                            </select>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Mulai Survei</button>
+                        </form>
+                       
                     </div>
                 </div>
 
