@@ -27,6 +27,9 @@ if($_GET['menu'] == 'suku'){
             <div class="panel-heading">
                 Data Pemilih Berdasarkan Suku
             </div>
+
+            <canvas id="sk" style="width:100%;"></canvas>
+
             <div class="table-responsive">
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
@@ -41,7 +44,11 @@ if($_GET['menu'] == 'suku'){
                             </thead>
                             <tbody>
                                 <?php
-                            while($data = mysqli_fetch_array($sql)){                            
+                            $np = array();
+                            $ns = array();    
+                            while($data = mysqli_fetch_array($sql)){    
+                            $np[] = $data['pemilih_suku'];
+                            $ns[] = $data['nama_suku'];                        
                             ?>
                                 <tr class="odd gradeX">
                                     <td><?php echo $data['nama_suku']; ?></td>
@@ -59,6 +66,32 @@ if($_GET['menu'] == 'suku'){
         </div>
     </div>
 </div>
+<script>
+    var xValues = <?php echo json_encode($ns,true);?>;
+    var yValues = <?php echo json_encode($np,true);?>;
+    var barColors = "blue";
+
+    new Chart("sk", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "Data Pemilih Berdasarkan Suku"
+            }
+        }
+    });
+    </script>
+
 <?php 
 }if($_GET['menu'] == 'agama'){
     $sql = mysqli_query($koneksi,"select agama.nama_agama,agama.id,pemilih.agama,count(pemilih.agama) as pemilih_agama from agama left join pemilih on agama.id = pemilih.agama group by agama.id");
@@ -76,6 +109,10 @@ if($_GET['menu'] == 'suku'){
             <div class="panel-heading">
                 Data Pemilih Berdasarkan Agama
             </div>
+
+            <canvas id="ag" style="width:100%;"></canvas>
+
+
             <div class="table-responsive">
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
@@ -89,8 +126,12 @@ if($_GET['menu'] == 'suku'){
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                            while($data = mysqli_fetch_array($sql)){                            
+                            <?php
+                            $na = array();
+                            $npa = array();
+                            while($data = mysqli_fetch_array($sql)){    
+                            $na[] = $data['nama_agama'];
+                            $npa[] = $data['pemilih_agama'];                        
                             ?>
                                 <tr class="odd gradeX">
                                     <td><?php echo $data['nama_agama']; ?></td>
@@ -109,6 +150,31 @@ if($_GET['menu'] == 'suku'){
     </div>
 </div>
 
+<script>
+    var xValues = <?php echo json_encode($na,true);?>;
+    var yValues = <?php echo json_encode($npa,true);?>;
+    var barColors = "yellow";
+
+    new Chart("ag", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "Data Pemilih Berdasarkan Agama"
+            }
+        }
+    });
+    </script>
 
 <?php 
 }if($_GET['menu'] == 'pekerjaan'){
@@ -125,8 +191,11 @@ if($_GET['menu'] == 'suku'){
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Data Pemilih Berdasarkan Agama
+                Data Pemilih Berdasarkan Pekerjaan
             </div>
+
+            <canvas id="pp" style="width:100%;"></canvas>
+            
             <div class="table-responsive">
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
@@ -140,8 +209,12 @@ if($_GET['menu'] == 'suku'){
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
+                            <?php
+                            $p = array();
+                            $pp = array();
                             while($data = mysqli_fetch_array($sql)){                            
+                            $p[] = $data['pekerjaan'];
+                            $pp[] = $data['pemilih_pekerjaan'];
                             ?>
                                 <tr class="odd gradeX">
                                     <td><?php echo $data['pekerjaan']; ?></td>
@@ -160,6 +233,110 @@ if($_GET['menu'] == 'suku'){
     </div>
 </div>
 
+<script>
+    var xValues = <?php echo json_encode($p,true);?>;
+    var yValues = <?php echo json_encode($pp,true);?>;
+    var barColors = "red";
+
+    new Chart("pp", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "Data Pemilih Berdasarkan Pekerjaan"
+            }
+        }
+    });
+    </script>
+
+
+<?php 
+}if($_GET['menu'] == 'umur'){
+    $data1 = mysqli_fetch_array(mysqli_query($koneksi,"select count(pemilih.umur) as pemilih_umur1 from pemilih where umur < 25"));
+    $data2 = mysqli_fetch_array(mysqli_query($koneksi,"select count(pemilih.umur) as pemilih_umur2 from pemilih where umur between 25 and 40"));
+    $data3 = mysqli_fetch_array(mysqli_query($koneksi,"select count(pemilih.umur) as pemilih_umur3 from pemilih where umur > 40"));
+    $a = array("<25" => $data1['pemilih_umur1'],"25<>40" => $data2['pemilih_umur2'],">40" => $data3['pemilih_umur3']);
+    $b = array();
+    array_push($b,$data1['pemilih_umur1'],$data2['pemilih_umur2'],$data3['pemilih_umur3']);
+?>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Kalkulasi Berdasarkan Umur</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Data Pemilih Berdasarkan Umur
+            </div>
+
+            <canvas id="um" style="width:100%;"></canvas>
+
+            <div class="table-responsive">
+                <div class="panel-body">
+                    <div class="dataTable_wrapper">
+                        <table class="table table-striped table-bordered table-hover" id="pekerjaan">
+                            <thead>
+                                <tr>
+
+                                    <th>< 25</th>
+                                    <th>25 <> 40</th>
+                                    <th>> 40</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="odd gradeX">
+                                    <td><?php echo $a['<25'];?></td>
+                                    <td><?php echo $a['25<>40'];?></td>
+                                    <td><?php echo $a['>40'];?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var xValues = ["> 25","25 <> 40","> 40"];
+    var yValues = <?php echo json_encode($b,true);?>;
+    var barColors = "green";
+
+    new Chart("um", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: "Data Pemilih Berdasarkan Umur"
+            }
+        }
+    });
+    </script>
 
 
 <?php
@@ -190,7 +367,8 @@ if($_SESSION['status'] == 'admin'){
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nama</th>
+                                    <th> Surveyor </th>
+                                    <th>Nama Pemilih</th>
                                     <th>Email</th>
                                     <th>Alamat</th>
                                     <th>Aksi</th>
@@ -203,6 +381,7 @@ if($_SESSION['status'] == 'admin'){
                             ?>
                                 <tr class="odd gradeX">
                                     <td><?php echo $data['id']; ?></td>
+                                    <td><?php echo convert_user($data['id_user']); ?></td>
                                     <td><?php echo $data['nama']; ?></td>
                                     <td><?php echo $data['email']; ?></td>
                                     <td><?php echo $data['alamat']; ?></td>
@@ -365,7 +544,8 @@ var map = new ol.Map({
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>ID USER</th>
+                                    <th>SURVEYOR</th>
+                                    <th>PEMILIH</th>
                                     <th>ID PERTANYAAN</th>
                                     <th>JAWABAN</th>
                                     <th>POINT</th>
@@ -381,6 +561,7 @@ var map = new ol.Map({
                                 <tr class="odd gradeX">
                                     <td><?php echo $data['id'];?></td>
                                     <td><?php echo convert_user($data['id_user']);?></td>
+                                    <td><?php echo convert_pemilih($data['id_pemilih']);?></td>
                                     <td><?php echo convert_pertanyaan($data['id_pertanyaan']);?></td>
                                     <td class="center"><?php echo $data['jawaban'];?></td>
                                     <td class="center"><?php echo $data['point'];?></td>

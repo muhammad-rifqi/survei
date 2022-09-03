@@ -24,31 +24,32 @@ if(empty($_SESSION['id_user'])){
     <link href="assets/dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css"
-        rel="stylesheet">
-    <link href="assets/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
-</head>
+        rel="stylesheet">    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    </head>
 
-<body>
+    <body>
 
-    <div id="wrapper">
+        <div id = "wrapper" >
 
         <?php include "nav.php";?>
 
-        <div id="page-wrapper">
+        <div id = "page-wrapper" >
 
-            <?php  include "isi.php"; ?>
+        <?php  include "isi.php"; ?>
 
-        </div>
-    </div>
+        </div> </div>
 
-    <script src="https://libs.baidu.com/jquery/1.11.1/jquery.js"></script>
+        <script src = "https://libs.baidu.com/jquery/1.11.1/jquery.js" >
+    </script>
     <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/bower_components/sammy/lib/min/sammy-latest.min.js"></script>
     <script src="assets/bower_components/metisMenu/dist/metisMenu.min.js"></script>
     <script src="assets/dist/js/sb-admin-2.js"></script>
 
     <script src="assets/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script src="assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script src="assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js">
+    </script>
     <script type="text/javascript">
     $(function() {
         $('#kalkulasi').DataTable({
@@ -106,7 +107,7 @@ if(empty($_SESSION['id_user'])){
         });
     });
     </script>
-</body>
+    </body>
 
 </html>
 <?php } ?>

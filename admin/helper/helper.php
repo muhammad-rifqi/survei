@@ -47,4 +47,11 @@ $sql = mysqli_query($koneksi,"select * from user where id = '".$id."'");
 $data = mysqli_fetch_array($sql); 
 return $data['username']; 
 }
+
+function convert_pemilih($id){
+    include "config.php";
+    $sql = mysqli_query($koneksi,"select id,nama from pemilih where id = '".$id."'");
+    $data = mysqli_fetch_array($sql); 
+    return $data['nama']; 
+    }
 ?>
