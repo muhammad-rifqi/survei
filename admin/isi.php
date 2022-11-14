@@ -389,7 +389,7 @@ if($_SESSION['status'] == 'admin'){
                                         <a href="aksi_admin.php?act=hapus_pemilih&id=<?php echo $data['id'];?>"
                                             class="btn btn-danger"><i class="fa fa-trash fa-fw"></i></a>
                                         <a href="?menu=detail_pemilih&id=<?php echo $data['id'];?>"
-                                            class="btn btn-success"><i class="fa fa-eye fa-fw"></i></a>
+                                            class="btn btn-primary"><i class="fa fa-eye fa-fw"></i></a>
                                     </td>
                                 </tr>
                                 <?php

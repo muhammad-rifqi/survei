@@ -94,7 +94,7 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button  onclick = "login()"  class="btn btn-lg btn-success btn-block">Login</button>
+                                <button  onclick = "login()"  class="btn btn-lg btn-primary btn-block">Login</button>
                             </fieldset>
                     </div>
                 </div>
