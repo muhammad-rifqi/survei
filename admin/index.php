@@ -79,7 +79,7 @@
                     </div>
                     <div class="panel-body">
 
-                            <p align="center"> <img src="assets/img/icons.png" width="50%"></p>
+                            <p align="center"> <img src="assets/img/logo.png" width="50%"></p>
 
                             <fieldset>
                                 <div class="form-group">
