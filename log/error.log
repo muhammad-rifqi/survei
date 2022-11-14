@@ -1,0 +1,6 @@
+[Mon Nov 14 05:56:12.136881 2022] [ssl:warn] [pid 31156] AH01909: RSA certificate configured for www.paradigmariset.brightnerd.site:443 does NOT include an ID which matches the server name
+[Mon Nov 14 05:56:12.328566 2022] [ssl:warn] [pid 31156] AH01909: RSA certificate configured for www.paradigmariset.brightnerd.site:443 does NOT include an ID which matches the server name
+[Mon Nov 14 06:53:41.236339 2022] [ssl:warn] [pid 31590] AH01909: RSA certificate configured for www.paradigmariset.brightnerd.site:443 does NOT include an ID which matches the server name
+[Mon Nov 14 06:53:41.264575 2022] [ssl:warn] [pid 31590] AH01909: RSA certificate configured for www.paradigmariset.brightnerd.site:443 does NOT include an ID which matches the server name
+[Mon Nov 14 06:54:43.061050 2022] [ssl:warn] [pid 31628] AH01909: RSA certificate configured for www.paradigmariset.brightnerd.site:443 does NOT include an ID which matches the server name
+[Mon Nov 14 06:54:43.090965 2022] [ssl:warn] [pid 31628] AH01909: RSA certificate configured for www.paradigmariset.brightnerd.site:443 does NOT include an ID which matches the server name

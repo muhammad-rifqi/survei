@@ -691,7 +691,7 @@ $sql = mysqli_query($koneksi,"select * from pertanyaan");
                             <?php 
                             $q = mysqli_query($koneksi,"select * from provinsi");
                             while($d = mysqli_fetch_array($q)){
-                                echo "<option value='$d[id]'>$d[nama_provinsi]</option>";
+                                echo "<option value='".$d['id']."'>".$d['nama_provinsi']."</option>";
                             }
                         ?>
                         </select>
@@ -764,10 +764,10 @@ $data = mysqli_fetch_array(mysqli_query($koneksi,"select * from pertanyaan where
                             <?php 
                             $q = mysqli_query($koneksi,"select * from provinsi");
                             while($d = mysqli_fetch_array($q)){
-                                if(d['id'] == $data['provinsi']){
-                                    echo "<option value='$d[id]' selected>$d[nama_provinsi]</option>";
+                                if($d['id'] == $data['provinsi']){
+                                    echo "<option value='".$d['id']."' selected>".$d['nama_provinsi']."</option>";
                                 }else{
-                                    echo "<option value='$d[id]'>$d[nama_provinsi]</option>";
+                                    echo "<option value='".$d['id']."'>".$d['nama_provinsi']."</option>";
                                 }
                             }
                         ?>
