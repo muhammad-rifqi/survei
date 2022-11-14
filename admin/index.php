@@ -6,8 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Aziz">
+    <meta name="author" content="Aziz">
+    <link rel="icon" type="image/x-icon" href="assets/img/icons.png">
 
     <title> Aplikasi Survei </title>
 
@@ -77,6 +78,9 @@
                         <h3 class="panel-title">Silahkan Login</h3>
                     </div>
                     <div class="panel-body">
+
+                            <p align="center"> <img src="assets/img/icons.png" width="50%"></p>
+
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Username" name="username" id="username" type="username" autofocus>

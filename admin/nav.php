@@ -6,7 +6,7 @@
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="#"> App Survei </a>
+         <a class="navbar-brand" href="#"> <img src="assets/img/logo.png" width="11%"></a>
      </div>
 
      <ul class="nav navbar-top-links navbar-right">

@@ -10,6 +10,7 @@ include "admin/config.php";
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <link rel="icon" type="image/x-icon" href="admin/assets/img/icons.png">
     <link href="style.css" type="text/css" rel="stylesheet">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
@@ -167,16 +168,16 @@ include "admin/config.php";
 <body>
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#006699">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#CCC">
         <div class="container">
-            <a class="navbar-brand" href="#">App Survei</a>
+            <a class="navbar-brand" href="#"><img src="admin/assets/img/logo.png" width="11%"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page"
-                            href="#"><?php echo $_SESSION['username']; ?> / <?php echo $_SESSION['status']; ?></a></li>
+                            href="#"><b style="color:black"><?php echo $_SESSION['username']; ?> / <?php echo $_SESSION['status']; ?></b></a></li>
                 </ul>
             </div>
         </div>

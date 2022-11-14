@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
--- https://www.phpmyadmin.net/
+-- version 4.4.15.10
+-- https://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 10, 2022 at 06:37 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.3.28
+-- Host: localhost
+-- Generation Time: Nov 14, 2022 at 01:54 PM
+-- Server version: 5.5.68-MariaDB
+-- PHP Version: 5.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -27,10 +26,10 @@ SET time_zone = "+00:00";
 -- Table structure for table `agama`
 --
 
-CREATE TABLE `agama` (
+CREATE TABLE IF NOT EXISTS `agama` (
   `id` int(11) NOT NULL,
   `nama_agama` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `agama`
@@ -49,7 +48,7 @@ INSERT INTO `agama` (`id`, `nama_agama`) VALUES
 -- Table structure for table `jawaban`
 --
 
-CREATE TABLE `jawaban` (
+CREATE TABLE IF NOT EXISTS `jawaban` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_pemilih` int(11) NOT NULL,
@@ -57,7 +56,7 @@ CREATE TABLE `jawaban` (
   `jawaban` varchar(100) NOT NULL,
   `point` int(11) NOT NULL,
   `benar` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `jawaban`
@@ -66,7 +65,10 @@ CREATE TABLE `jawaban` (
 INSERT INTO `jawaban` (`id`, `id_user`, `id_pemilih`, `id_pertanyaan`, `jawaban`, `point`, `benar`) VALUES
 (11, 3, 6, 2, 'A', 0, 'A'),
 (13, 3, 8, 4, 'A', 0, 'A'),
-(14, 3, 9, 2, 'A', 0, 'A');
+(14, 3, 9, 2, 'A', 0, 'A'),
+(15, 3, 10, 2, 'A', 0, 'A'),
+(16, 3, 11, 2, 'A', 0, 'A'),
+(17, 3, 12, 2, 'A', 0, 'A');
 
 -- --------------------------------------------------------
 
@@ -74,11 +76,11 @@ INSERT INTO `jawaban` (`id`, `id_user`, `id_pemilih`, `id_pertanyaan`, `jawaban`
 -- Table structure for table `kecamatan`
 --
 
-CREATE TABLE `kecamatan` (
+CREATE TABLE IF NOT EXISTS `kecamatan` (
   `id` int(11) NOT NULL,
   `id_kota` int(11) NOT NULL,
   `nama_kecamatan` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kecamatan`
@@ -94,11 +96,11 @@ INSERT INTO `kecamatan` (`id`, `id_kota`, `nama_kecamatan`) VALUES
 -- Table structure for table `kota`
 --
 
-CREATE TABLE `kota` (
+CREATE TABLE IF NOT EXISTS `kota` (
   `id` int(11) NOT NULL,
   `id_provinsi` int(11) NOT NULL,
   `nama_kota` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kota`
@@ -115,7 +117,7 @@ INSERT INTO `kota` (`id`, `id_provinsi`, `nama_kota`) VALUES
 -- Table structure for table `pemilih`
 --
 
-CREATE TABLE `pemilih` (
+CREATE TABLE IF NOT EXISTS `pemilih` (
   `id` int(11) NOT NULL,
   `no_ktp` varchar(255) NOT NULL,
   `nama` varchar(255) NOT NULL,
@@ -133,7 +135,7 @@ CREATE TABLE `pemilih` (
   `latitude` varchar(255) NOT NULL,
   `longitude` varchar(255) NOT NULL,
   `id_user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pemilih`
@@ -141,8 +143,10 @@ CREATE TABLE `pemilih` (
 
 INSERT INTO `pemilih` (`id`, `no_ktp`, `nama`, `email`, `suku`, `agama`, `provinsi`, `kota`, `kecamatan`, `umur`, `pekerjaan`, `alamat`, `foto`, `token`, `latitude`, `longitude`, `id_user`) VALUES
 (6, '10890983495893', 'muhammad rifki', 'muhammad45rifki@gmail.com', 2, 1, 8, 3, 2, 45, 'petani', 'ciputat, tangerang selatan', 'rifki.JPG', 'lehjatmq7flmal56aragsspq7u', '-6.5971469', '106.8060388', 3),
-(8, '10890983495893', 'Muhammad Rifqi', 'php45mysql@gmail.com', 2, 1, 8, 3, 2, 50, 'karyawanswasta', 'ciputat, tangerang selatan', 'g20pedia-banner.jpg', '4svr50261nm059l3dtoouu62en', '-6.5971469', '106.8060388', 3),
-(9, '37879863458683', 'Rizky Darmawan', 'darmawanrizsky@gmail.com', 1, 1, 8, 3, 2, 34, 'karyawanswasta', 'Pamulang', 'image9.jpg', '0d5obp3lor91t92n8gokt0kb9d', '-6.1169309', '106.1538519', 3);
+(9, '37879863458683', 'Rizky Darmawan', 'darmawanrizsky@gmail.com', 1, 1, 8, 3, 2, 34, 'karyawanswasta', 'Pamulang', 'image9.jpg', '0d5obp3lor91t92n8gokt0kb9d', '-6.1169309', '106.1538519', 3),
+(10, '37879863458683', 'Khalid', 'khalid@localhost', 1, 1, 8, 3, 2, 26, 'karyawanswasta', 'ciputat, tangerang selatan', 'lmpattra.jpeg', '7bjlrg1chudcgo973vhvll7h67', '-6.4408153', '106.7415669', 3),
+(11, '3781874873346876834', 'Andra Backbone', 'andra@gmail.com', 1, 1, 8, 3, 2, 39, 'karyawanswasta', 'blok M jakarta', '168345580_201189575101824_8910491921445866768_n.jpeg', 'mbt1fkl60j8vuk5un64n48tot2', '-6.5971469', '106.8060388', 3),
+(12, '10890983495893', 'Rahman', 'rahman@localhost', 1, 1, 8, 3, 2, 40, 'karyawanswasta', 'Kebayoran Lama , jakarta selatan', 'warna-nodrop.PNG', '7menpo4nvr629hjamghd2gi9l1', '-6.5971469', '106.8060388', 3);
 
 -- --------------------------------------------------------
 
@@ -150,7 +154,7 @@ INSERT INTO `pemilih` (`id`, `no_ktp`, `nama`, `email`, `suku`, `agama`, `provin
 -- Table structure for table `pertanyaan`
 --
 
-CREATE TABLE `pertanyaan` (
+CREATE TABLE IF NOT EXISTS `pertanyaan` (
   `id` int(11) NOT NULL,
   `soal` text NOT NULL,
   `a` varchar(100) NOT NULL,
@@ -160,7 +164,7 @@ CREATE TABLE `pertanyaan` (
   `jawaban` varchar(100) NOT NULL,
   `foto` varchar(255) NOT NULL,
   `provinsi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pertanyaan`
@@ -177,10 +181,10 @@ INSERT INTO `pertanyaan` (`id`, `soal`, `a`, `b`, `c`, `d`, `jawaban`, `foto`, `
 -- Table structure for table `provinsi`
 --
 
-CREATE TABLE `provinsi` (
+CREATE TABLE IF NOT EXISTS `provinsi` (
   `id` int(11) NOT NULL,
   `nama_provinsi` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `provinsi`
@@ -202,10 +206,10 @@ INSERT INTO `provinsi` (`id`, `nama_provinsi`) VALUES
 -- Table structure for table `suku`
 --
 
-CREATE TABLE `suku` (
+CREATE TABLE IF NOT EXISTS `suku` (
   `id` int(11) NOT NULL,
   `nama_suku` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `suku`
@@ -222,12 +226,12 @@ INSERT INTO `suku` (`id`, `nama_suku`) VALUES
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `status` enum('admin','surveyor') NOT NULL DEFAULT 'surveyor'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
@@ -303,57 +307,47 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `agama`
 --
 ALTER TABLE `agama`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `jawaban`
 --
 ALTER TABLE `jawaban`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `kota`
 --
 ALTER TABLE `kota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pemilih`
 --
 ALTER TABLE `pemilih`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `pertanyaan`
 --
 ALTER TABLE `pertanyaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `provinsi`
 --
 ALTER TABLE `provinsi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `suku`
 --
 ALTER TABLE `suku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-COMMIT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
