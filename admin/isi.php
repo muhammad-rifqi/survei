@@ -549,7 +549,7 @@ var map = new ol.Map({
                                     <th>ID PERTANYAAN</th>
                                     <th>JAWABAN</th>
                                     <th>POINT</th>
-                                    <th>BENAR</th>
+                                    <!-- <th>BENAR</th> -->
                                     <th>AKSI</th>
                                 </tr>
                             </thead>
@@ -565,7 +565,7 @@ var map = new ol.Map({
                                     <td><?php echo convert_pertanyaan($data['id_pertanyaan']);?></td>
                                     <td class="center"><?php echo $data['jawaban'];?></td>
                                     <td class="center"><?php echo $data['point'];?></td>
-                                    <td class="center"><?php echo $data['benar'];?></td>
+                                    <!-- <td class="center"><?//php echo $data['benar'];?></td> -->
                                     <td class="center">
                                         <a href="aksi_admin.php?act=hapus_jawaban&id=<?php echo $data['id']; ?>"
                                             class="btn btn-danger"><i class="fa fa-trash fa-fw"></i></a>
